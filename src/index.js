@@ -12,3 +12,7 @@ ReactDOM.render(
 
 //comment
 // another comment
+
+function nameFun(params) {
+  console.log("something");
+}
