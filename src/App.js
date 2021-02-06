@@ -1,4 +1,5 @@
 import React from "react";
+import Products from "./components/Products";
 import data from "./data.json";
 
 
@@ -21,10 +22,10 @@ class App extends React.Component {
                 <main>
                     <div className = "content">
                         <div className = "main">
-                            
+                            <Products products={this.state.produicts}></Products>
                         </div> 
                         <div className = "sidebar">
-                        
+                            Cart Items
                         </div> 
                     </div> 
                 </main> 
