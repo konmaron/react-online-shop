@@ -9,10 +9,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-//comment
-// another comment
-
-function nameFun(params) {
-  console.log("something");
-}
