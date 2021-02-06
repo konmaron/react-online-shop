@@ -9,11 +9,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-function newFunctio() {
-    console.log("HELLO!");
-}
-
-function anotherCheck() {
-  console.log('HI!');
-}
