@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import formatCurrency from '../util';
+import {motion} from "framer-motion"
 
 export default class Cart extends Component {
     constructor(props){
@@ -27,6 +28,34 @@ export default class Cart extends Component {
         this.props.createOrder(order);
     }
 
+    container = {
+        hidden: { opacity: 1, scale: 0 },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          transition: {
+            delayChildren: 0.5,
+            staggerChildren: 0.3
+          }
+        }
+    };
+
+    itemCart = {
+        hidden: { x: -40, opacity: 0 },
+        visible: {
+          x: 0,
+          opacity: 1
+        },
+    };
+
+    itemProceed = {
+        hidden: { x: 40, opacity: 0 },
+        visible: {
+          x: 0,
+          opacity: 1
+        },
+    };
+
     render() {
         const {cartItems} = this.props;
         return (
@@ -36,9 +65,14 @@ export default class Cart extends Component {
                 : (<div className="cart cart-header">You have {cartItems.length} in the cart {" "}</div>)}
                 <div>
                     <div className="cart">
-                        <ul className="cart-items">
+                        <motion.ul 
+                            className="cart-items"
+                            variants={this.container}
+                            initial="hidden"
+                            animate="visible"
+                        >
                             {cartItems.map(item => (
-                                <li key={item._id}>
+                                <motion.li key={item._id} variants={this.itemCart}>
                                     <div>
                                         <img src={item.image} alt={item.title}></img>
                                     </div>
@@ -49,9 +83,9 @@ export default class Cart extends Component {
                                             <button className="button" onClick={() => this.props.removeFromCart(item)}>Remove</button>
                                         </div>
                                     </div>
-                                </li>
+                                </motion.li>
                             ))}
-                        </ul>
+                        </motion.ul>
                     </div>
                     {cartItems.length !== 0 && (
                         <div>
@@ -67,10 +101,15 @@ export default class Cart extends Component {
                                 </div>
                             </div>
                             {this.state.showCheckout && (
-                                <div className="cart">
+                                <motion.div 
+                                    className="cart"
+                                    variants={this.container}
+                                    initial="hidden"
+                                    animate="visible"
+                                >
                                     <form onSubmit={this.createOrder}>
                                         <ul className="form-container">
-                                            <li>
+                                            <motion.li variants={this.itemProceed}>
                                                 <label>Email</label>
                                                 <input 
                                                     name="email"
@@ -78,8 +117,8 @@ export default class Cart extends Component {
                                                     required 
                                                     onChange={this.handleInput}
                                                 ></input>
-                                            </li>
-                                            <li>
+                                            </motion.li>
+                                            <motion.li variants={this.itemProceed}>
                                                 <label>Name</label>
                                                 <input 
                                                     name="name"
@@ -87,8 +126,8 @@ export default class Cart extends Component {
                                                     required 
                                                     onChange={this.handleInput}
                                                 ></input>
-                                            </li>
-                                            <li>
+                                            </motion.li>
+                                            <motion.li variants={this.itemProceed}>
                                                 <label>Address</label>
                                                 <input 
                                                     name="address"
@@ -96,13 +135,13 @@ export default class Cart extends Component {
                                                     required 
                                                     onChange={this.handleInput}
                                                 ></input>
-                                            </li>
-                                            <li>
+                                            </motion.li>
+                                            <motion.li variants={this.itemProceed}>
                                                 <button className="button primary" type="submit">Checkout</button>
-                                            </li>
+                                            </motion.li>
                                         </ul>
                                     </form>
-                                </div>
+                                </motion.div>
                             )}
                         </div>
                     )}
