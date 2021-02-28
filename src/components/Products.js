@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import formatCurrency from '../util'
 import {motion} from "framer-motion"
 import Modal from 'react-modal';
+import {connect} from 'react-redux';
+import {fetchProducts} from "../actions/productActions"
 
-export default class Products extends Component {
+class Products extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -11,6 +13,10 @@ export default class Products extends Component {
         };
     }
 
+    componentDidMount() {
+        this.props.fetchProducts();
+    }
+     
     container = {
         hidden: { opacity: 1, scale: 0 },
         visible: {
@@ -41,14 +47,15 @@ export default class Products extends Component {
 
     render() {
         const {product} = this.state;
-
         return (
             <motion.div 
                 variants={this.container}
                 initial="hidden"
                 animate="visible"
             >
-                <ul className="products">
+                {
+                    !this.props.products ? <div>Loading....</div> :
+                    <ul className="products">
                     {this.props.products.map(product => (
                         <motion.li key={product._id} variants={this.item}>
                             <div className="product">
@@ -70,6 +77,7 @@ export default class Products extends Component {
                         </motion.li>
                     ))}
                 </ul>
+                }
                 {
                     product && (
                         <Modal isOpen={true} onRequestClose={this.closeModal}>
@@ -115,3 +123,5 @@ export default class Products extends Component {
         )
     }
 }
+
+export default connect((state) => ({products: state.products.items}), {fetchProducts})(Products);
