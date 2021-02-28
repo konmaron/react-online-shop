@@ -16,7 +16,7 @@ class Products extends Component {
     componentDidMount() {
         this.props.fetchProducts();
     }
-     
+     n
     container = {
         hidden: { opacity: 1, scale: 0 },
         visible: {
@@ -124,4 +124,4 @@ class Products extends Component {
     }
 }
 
-export default connect((state) => ({products: state.products.items}), {fetchProducts})(Products);
+export default connect((state) => ({products: state.products.filteredItems}), {fetchProducts})(Products);
