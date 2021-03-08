@@ -1,0 +1,1 @@
+mongodb+srv://react-shopping-cart-test:qwertyuiop1@cluster0.jbrqy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
