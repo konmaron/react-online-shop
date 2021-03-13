@@ -23,7 +23,8 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.16",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "server": "nodemon server.js",
@@ -51,7 +52,7 @@
     ]
   },
   "engines": {
-    "node":"12.4.0",
-    "npm":"6.9.0"
+    "node": "12.4.0",
+    "npm": "6.9.0"
   }
 }
